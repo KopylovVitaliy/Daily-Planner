@@ -5,6 +5,10 @@ public class IncorrectArgumentException extends Exception{
         super(argument);
     }
 
+    public String getArgument() {
+        return argument;
+    }
+
     @Override
     public String toString() {
         return "Параметр " + argument + " задан неверно";

@@ -5,6 +5,10 @@ public class TaskService {
     private HashMap<Integer, Task> taskMap = new HashMap<>();
     private List<Task> removedTasks = new LinkedList<>();
 
+    public void print(){
+        System.out.println(taskMap);
+    }
+
     public void add(Task task) {
         taskMap.put(task.getId(), task);
     }
@@ -17,6 +21,10 @@ public class TaskService {
     }
 
     public void getAllByDate(LocalDate localDate) {
+    }
+
+    public HashMap<Integer, Task> getTaskMap() {
+        return taskMap;
     }
 
     @Override

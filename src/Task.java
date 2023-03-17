@@ -9,14 +9,14 @@ public abstract class Task {
     private final LocalDateTime dataTime;
     private String description;
     private int id;
-    private static final int idGenerator = 1;
+    private static int idGenerator = 1;
 
     public Task(String title, Type type, LocalDateTime dataTime, String description) {
         this.title = title;
         this.type = type;
         this.dataTime = dataTime;
         this.description = description;
-        id = id + idGenerator;
+        this.id =idGenerator++;
     }
 
     public abstract boolean appearsln(LocalDate dateForCheck);
