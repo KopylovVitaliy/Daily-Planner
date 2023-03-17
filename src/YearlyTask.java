@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class YearlyTask extends Task{
@@ -9,7 +10,7 @@ public class YearlyTask extends Task{
     }
 
     @Override
-    public boolean appearsln() {
-        return false;
+    public boolean appearsln(LocalDate dateForCheck) {
+        return dateForCheck.isEqual(getDataTime().toLocalDate());
     }
 }

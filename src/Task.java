@@ -1,25 +1,25 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Random;
 
 public abstract class Task {
     private String title;
-    private final Type type;
+    private Type type;
     private final LocalDateTime dataTime;
     private String description;
     private int id;
-    private int idGenerator;
-    Random random = new Random();
+    private static final int idGenerator = 1;
 
     public Task(String title, Type type, LocalDateTime dataTime, String description) {
         this.title = title;
         this.type = type;
         this.dataTime = dataTime;
         this.description = description;
-        idGenerator = random.nextInt(100);
-        id++;
+        id = id + idGenerator;
     }
-    public abstract boolean appearsln();
+
+    public abstract boolean appearsln(LocalDate dateForCheck);
 
     public String getTitle() {
         return title;
@@ -51,10 +51,9 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return "Задача: " + title + " " + type +
+        return " Задача: " + title + " " + type +
                 ", дата " + dataTime +
-                ", описание задачи: " + description +
-                ", id= " + id;
+                ", описание задачи: " + description;
     }
 
     @Override
@@ -62,11 +61,13 @@ public abstract class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return id == task.id && idGenerator == task.idGenerator && Objects.equals(title, task.title) && type == task.type && Objects.equals(dataTime, task.dataTime) && Objects.equals(description, task.description) && Objects.equals(random, task.random);
+        return Objects.equals(title, task.title) && type == task.type && Objects.equals(dataTime, task.dataTime) && Objects.equals(description, task.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, type, dataTime, description, id, idGenerator, random);
+        return Objects.hash(title, type, dataTime, description);
     }
 }
+
+

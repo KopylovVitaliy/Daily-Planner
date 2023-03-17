@@ -1,6 +1,6 @@
 public enum Type {
-    WORK("Рабочая"),
-    PERSONAL("Личная");
+    WORK("рабочая"),
+    PERSONAL("личная");
 
     private final String type;
 

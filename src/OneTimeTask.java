@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class OneTimeTask extends Task{
@@ -9,7 +10,7 @@ public class OneTimeTask extends Task{
     }
 
     @Override
-    public boolean appearsln() {
+    public boolean appearsln(LocalDate dateForCheck) {
         return false;
     }
 }
