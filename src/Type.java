@@ -1,4 +1,16 @@
 public enum Type {
-    WORK, PERSONAL
+    WORK("Рабочая"),
+    PERSONAL("Личная");
 
+    private String type;
+
+    Type(String type) {
+        this.type = type;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Тип задачи - " + type;
+    }
 }

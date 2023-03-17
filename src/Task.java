@@ -17,7 +17,7 @@ public abstract class Task {
         this.dataTime = dataTime;
         this.description = description;
         idGenerator = random.nextInt(100);
-        id = id + idGenerator;
+        id++;
     }
     public abstract boolean appearsln();
 
@@ -51,13 +51,10 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "title='" + title + '\'' +
-                ", type=" + type +
-                ", dataTime=" + dataTime +
-                ", description='" + description + '\'' +
-                ", id=" + id +
-                '}';
+        return "Задача: " + title + " " + type +
+                ", дата " + dataTime +
+                ", описание задачи: " + description +
+                ", id= " + id;
     }
 
     @Override
