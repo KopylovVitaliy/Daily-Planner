@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
 
 public class DailyTask extends Task{
     public DailyTask(String title
@@ -11,6 +12,6 @@ public class DailyTask extends Task{
 
     @Override
     public boolean appearsln(LocalDate dateForCheck) {
-        return false;
+        return dateForCheck.isEqual(getDataTime().toLocalDate());
     }
 }
