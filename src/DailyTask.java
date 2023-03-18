@@ -5,7 +5,7 @@ public class DailyTask extends Task{
     public DailyTask(String title
             , Type type
             , LocalDateTime dataTime
-            , String description) {
+            , String description) throws IncorrectArgumentException {
         super(title, type, dataTime, description);
     }
 

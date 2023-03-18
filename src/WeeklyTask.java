@@ -5,12 +5,12 @@ public class WeeklyTask extends Task{
     public WeeklyTask(String title
             , Type type
             , LocalDateTime dataTime
-            , String description) {
+            , String description) throws IncorrectArgumentException {
         super(title, type, dataTime, description);
     }
 
     @Override
     public boolean appearsln(LocalDate dateForCheck) {
-        return false;
+        return dateForCheck.isEqual(getDataTime().toLocalDate());
     }
 }

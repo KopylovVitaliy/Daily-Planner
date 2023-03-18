@@ -6,7 +6,6 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IncorrectArgumentException {
         Scanner scanner = new Scanner(System.in);
-        HashMap<Integer, Task> taskMap = new HashMap<>();
         TaskService taskService = new TaskService();
         DailyTask task1 = new DailyTask("Почистить зубы"
                 , Type.valueOf("WORK")
@@ -19,35 +18,44 @@ public class Main {
                 , 2).atStartOfDay()
                 , "чистка");
 
-        taskService.add(task1);
-        taskService.add(task2);
-        System.out.println(task2.getId());
-        System.out.println(task1.getId());
-        taskService.print();
 
-        System.out.println("Выберите задачу");
-        String title;
-        System.out.println("title");
-        title = scanner.nextLine();
-        Type type;
-        System.out.println("type");
-        type = Type.valueOf(scanner.nextLine());
-        LocalDate localDate;
-        System.out.println("дата");
-        localDate = LocalDate.of(scanner.nextInt(), scanner.nextInt(), scanner.nextInt());
-        String disc;
-        System.out.println("Описание");
-        disc = scanner.nextLine();
-        System.out.println("повтор");
-        int x = scanner.nextInt();
-        if(x == 1){
-            DailyTask task = new DailyTask(title, type, localDate.atStartOfDay(), disc);
-            taskService.add(task);
+        while (true) {
+            int y = scanner.nextInt();
+            if (y == 1) {
+
+                System.out.println("Выберите задачу");
+
+                System.out.println("title");
+                String title = scanner.nextLine();
+                System.out.println(title);
+
+                System.out.println("type");
+                Type type = Type.valueOf(scanner.nextLine());
+                System.out.println(type);
+
+                System.out.println("Описание");
+                String description = scanner.nextLine();
+                System.out.println(description);
+
+                System.out.println("дата");
+                int year = scanner.nextInt();
+                int month = scanner.nextInt();
+                int day = scanner.nextInt();
+                LocalDate localDate = LocalDate.of(year, month, day);
+                System.out.println(localDate);
+
+                System.out.println("повтор");
+
+                int x = scanner.nextInt();
+                if (x == 1) {
+                    DailyTask task = new DailyTask(title, type, localDate.atTime(12, 00), description);
+                    taskService.add(task);
+                }
+                System.out.println(taskService);
+            } else {
+                break;
+            }
         }
-
-        System.out.println(taskService);
-
-
 
     }
 }

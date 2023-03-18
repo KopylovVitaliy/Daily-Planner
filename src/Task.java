@@ -11,12 +11,12 @@ public abstract class Task {
     private int id;
     private static int idGenerator = 1;
 
-    public Task(String title, Type type, LocalDateTime dataTime, String description) {
+    public Task(String title, Type type, LocalDateTime dataTime, String description) throws IncorrectArgumentException {
         this.title = title;
         this.type = type;
         this.dataTime = dataTime;
         this.description = description;
-        this.id =idGenerator++;
+        this.id = idGenerator++;
     }
 
     public abstract boolean appearsln(LocalDate dateForCheck);
@@ -41,12 +41,19 @@ public abstract class Task {
         return id;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title) throws IncorrectArgumentException {
+        if (title == null || title.isEmpty() || title.isBlank()) {
+            throw new IncorrectArgumentException(title);
+        }
         this.title = title;
+
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String description) throws IncorrectArgumentException {
+        if ( !description.isEmpty() &&  !description.isBlank()) {
+            this.description = description;
+        }
+        throw new IncorrectArgumentException(description);
     }
 
     @Override
