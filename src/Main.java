@@ -22,12 +22,11 @@ public class Main {
         while (true) {
             int y = scanner.nextInt();
             if (y == 1) {
-
-                System.out.println("Выберите задачу");
-
-                System.out.println("title");
+                String title1 = scanner.nextLine(); // временная фича
+                System.out.println("Название задачи");
                 String title = scanner.nextLine();
-                System.out.println(title);
+
+                System.out.println(title1);
 
                 System.out.println("type");
                 Type type = Type.valueOf(scanner.nextLine());
