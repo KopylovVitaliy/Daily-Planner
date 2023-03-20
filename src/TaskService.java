@@ -2,15 +2,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TaskService {
     private HashMap<Integer, Task> taskMap = new HashMap<>();
     private List<Task> removedTasks = new LinkedList<>();
 
-    public void removedTasks(){
-        System.out.println("Удалённые задачи:");
-        System.out.println(removedTasks);
-    }
 
     public void add(Task task) {
         taskMap.put(task.getId(), task);
@@ -26,19 +23,38 @@ public class TaskService {
     }
 
     public void getAllByDate(LocalDate localDate) {
-        Map<Integer, Task> list = taskMap.entrySet()
-                .stream()
+        Map<Integer, Task> list = taskMap.entrySet().stream()
                 .filter(x -> x.getValue().appearsln(localDate))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         for (Map.Entry<Integer, Task> list1 :
-             list.entrySet()) {
+                list.entrySet()) {
             System.out.println("Задача N: " + list1.getKey() + ", " + list1.getValue());
         }
 
     }
 
+    public void allTaskSortedDate(LocalDate localDate) {
+        Map<Integer, Task> list = taskMap.entrySet().stream()
+                .filter(x -> x.getValue().appearsln(localDate))
+                .sorted(Comparator.comparingInt(o -> (o.getValue().getDataTime().getDayOfYear())))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        for (Map.Entry<Integer, Task> list1 :
+                list.entrySet()) {
+            System.out.println("Задача N: " + list1.getKey() + ", " + list1.getValue());
+        }
+        System.out.println(list);
+//        List <Map.Entry<Integer, Task>> valuesList = new ArrayList(taskMap.entrySet());
+//        Collections.sort(valuesList, Comparator.comparingInt(o -> (o.getValue().getDataTime().getDayOfYear())));
+//
+    }
+
     public HashMap<Integer, Task> getTaskMap() {
         return taskMap;
+    }
+
+    public void removedTasks() {
+        System.out.println("Удалённые задачи:");
+        System.out.println(removedTasks);
     }
 
     @Override

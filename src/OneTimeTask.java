@@ -5,7 +5,7 @@ public class OneTimeTask extends Task{
     public OneTimeTask(String title
             , Type type
             , LocalDateTime dataTime
-            , String description) throws IncorrectArgumentException {
+            , String description) {
         super(title, type, dataTime, description);
     }
 

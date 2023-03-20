@@ -5,7 +5,7 @@ public class YearlyTask extends Task {
     public YearlyTask(String title
             , Type type
             , LocalDateTime dataTime
-            , String description) throws IncorrectArgumentException {
+            , String description) {
         super(title, type, dataTime, description);
     }
 

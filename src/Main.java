@@ -5,7 +5,7 @@ import java.util.*;
 
 
 public class Main {
-    public static void main(String[] args) throws IncorrectArgumentException, TaskNotFoundException {
+    public static void main(String[] args) throws  TaskNotFoundException {
         Scanner scanner = new Scanner(System.in);
         TaskService taskService = new TaskService();
         LocalDate localDate = LocalDate.now();
@@ -19,12 +19,12 @@ public class Main {
         YearlyTask task2 = new YearlyTask("Годовая"
                 , Type.valueOf("PERSONAL")
                 , LocalDate.of(2022, Month.MARCH
-                , 20).atStartOfDay()
+                , 21).atStartOfDay()
                 , "чистка");
         OneTimeTask task3 = new OneTimeTask("Разовая"
                 , Type.valueOf("PERSONAL")
                 , LocalDate.of(2022, Month.MARCH
-                , 20).atStartOfDay()
+                , 5).atStartOfDay()
                 , "чистка");
         WeeklyTask task4 = new WeeklyTask("Недельная"
                 , Type.valueOf("PERSONAL")
@@ -41,6 +41,7 @@ public class Main {
         taskService.add(task3);
         taskService.add(task4);
         taskService.add(task5);
+        taskService.allTaskSortedDate(localDate);
 
         while (true) {
             System.out.println("Выберите действие:");

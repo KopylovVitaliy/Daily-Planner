@@ -11,7 +11,7 @@ public abstract class Task {
     private int id;
     private static int idGenerator = 1;
 
-    public Task(String title, Type type, LocalDateTime dataTime, String description) throws IncorrectArgumentException {
+    public Task(String title, Type type, LocalDateTime dataTime, String description) {
         this.title = title;
         this.type = type;
         this.dataTime = dataTime;
