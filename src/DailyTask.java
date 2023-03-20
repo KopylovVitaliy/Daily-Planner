@@ -12,6 +12,6 @@ public class DailyTask extends Task{
 
     @Override
     public boolean appearsln(LocalDate dateForCheck) {
-        return dateForCheck.isEqual(getDataTime().toLocalDate());
+        return true;
     }
 }

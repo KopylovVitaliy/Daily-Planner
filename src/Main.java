@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.*;
 
@@ -8,27 +9,46 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         TaskService taskService = new TaskService();
         LocalDate localDate = LocalDate.now();
+        LocalDateTime localTime = LocalDateTime.now();
 
-        DailyTask task1 = new DailyTask("Почистить зубы"
+        DailyTask task1 = new DailyTask("Ежедневная"
                 , Type.valueOf("WORK")
                 , LocalDate.of(2023, Month.MARCH
-                , 30).atStartOfDay()
+                , 2).atStartOfDay()
                 , "чистка зубов");
-        DailyTask task2 = new DailyTask("Почистить"
+        YearlyTask task2 = new YearlyTask("Годовая"
+                , Type.valueOf("PERSONAL")
+                , LocalDate.of(2022, Month.MARCH
+                , 20).atStartOfDay()
+                , "чистка");
+        OneTimeTask task3 = new OneTimeTask("Разовая"
+                , Type.valueOf("PERSONAL")
+                , LocalDate.of(2022, Month.MARCH
+                , 20).atStartOfDay()
+                , "чистка");
+        WeeklyTask task4 = new WeeklyTask("Недельная"
                 , Type.valueOf("PERSONAL")
                 , LocalDate.of(2023, Month.MARCH
-                , 2).atStartOfDay()
+                , 6).atStartOfDay()
+                , "чистка");
+        MonthlyTask task5 = new MonthlyTask("Месячная"
+                , Type.valueOf("PERSONAL")
+                , LocalDate.of(2023, Month.FEBRUARY
+                , 20).atStartOfDay()
                 , "чистка");
         taskService.add(task1);
         taskService.add(task2);
-        System.out.println(task1.appearsln(LocalDate.of(2023, 03, 30)));
-        taskService.getAllByDate(LocalDate.of(2023, 03, 30));
-
+        taskService.add(task3);
+        taskService.add(task4);
+        taskService.add(task5);
 
         while (true) {
             System.out.println("Выберите действие:");
             System.out.println("1 - создать задачу");
             System.out.println("2 - Удалить задачу");
+            System.out.println("3 - получить задачи на сегодня");
+            System.out.println("4 - получить задачи на определённую дату");
+            System.out.println("5 - изменить задачу");
             System.out.println("0 - остановить программу");
 
             int y = scanner.nextInt();
@@ -69,29 +89,46 @@ public class Main {
 
                 int x = scanner.nextInt();
                 if (x == 1) {
-                    DailyTask task = new DailyTask(title, type, localDate.atTime(12, 00), description);
+                    DailyTask task = new DailyTask(title, type, localDate.atTime(localTime.getHour(), localTime.getMinute()), description);
                     taskService.add(task);
                 } else if (x == 2) {
-                    WeeklyTask weeklyTask = new WeeklyTask(title, type, localDate.atTime(12, 00), description);
+                    WeeklyTask weeklyTask = new WeeklyTask(title, type, localDate.atTime(localTime.getHour(), localTime.getMinute()), description);
                     taskService.add(weeklyTask);
                 } else if (x == 3) {
-                    MonthlyTask monthlyTask = new MonthlyTask(title, type, localDate.atTime(12, 00), description);
+                    MonthlyTask monthlyTask = new MonthlyTask(title, type, localDate.atTime(localTime.getHour(), localTime.getMinute()), description);
                     taskService.add(monthlyTask);
                 } else if (x == 4) {
-                    YearlyTask yearlyTask = new YearlyTask(title, type, localDate.atTime(12, 00), description);
+                    YearlyTask yearlyTask = new YearlyTask(title, type, localDate.atTime(localTime.getHour(), localTime.getMinute()), description);
                     taskService.add(yearlyTask);
                 } else if (x == 5) {
-                    OneTimeTask oneTimeTask = new OneTimeTask(title, type, localDate.atTime(12, 00), description);
+                    OneTimeTask oneTimeTask = new OneTimeTask(title, type, localDate.atTime(localTime.getHour(), localTime.getMinute()), description);
                     taskService.add(oneTimeTask);
                 }
                 System.out.println(taskService);
-            } else if (y == 2){
+            } else if (y == 2) {
                 System.out.println("Введите id задачи, которую нужно удалить.");
                 int d = scanner.nextInt();
                 taskService.remove(d);
                 taskService.removedTasks();
-            }
+            } else if (y == 3) {
+                taskService.getAllByDate(localDate);
+            } else if (y == 4) {
+                System.out.println("Введите день");
+                int day = scanner.nextInt();
+                System.out.println("Введите месяц");
+                int month = scanner.nextInt();
+                System.out.println("Введите год");
+                int year = scanner.nextInt();
 
+                taskService.getAllByDate(LocalDate.of(year, month, day));
+
+            }else if(y == 5){
+                System.out.println("Введите id задачи, которую хотите изменить.");
+                int id = scanner.nextInt();
+
+                System.out.println("");
+
+            }
             else if (y == 0) {
                 break;
             }

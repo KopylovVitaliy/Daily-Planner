@@ -30,7 +30,10 @@ public class TaskService {
                 .stream()
                 .filter(x -> x.getValue().appearsln(localDate))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        System.out.println(list);
+        for (Map.Entry<Integer, Task> list1 :
+             list.entrySet()) {
+            System.out.println("Задача N: " + list1.getKey() + ", " + list1.getValue());
+        }
 
     }
 

@@ -11,6 +11,8 @@ public class OneTimeTask extends Task{
 
     @Override
     public boolean appearsln(LocalDate dateForCheck) {
-        return false;
+        return getDataTime().getYear() == dateForCheck.getYear()
+                && getDataTime().getMonth() == dateForCheck.getMonth()
+                && getDataTime().getDayOfYear() == dateForCheck.getDayOfYear();
     }
 }

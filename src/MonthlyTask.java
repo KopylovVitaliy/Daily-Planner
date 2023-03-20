@@ -11,6 +11,6 @@ public class MonthlyTask extends Task{
 
     @Override
     public boolean appearsln(LocalDate dateForCheck) {
-        return false;
+        return getDataTime().getDayOfMonth() == dateForCheck.getDayOfMonth();
     }
 }
