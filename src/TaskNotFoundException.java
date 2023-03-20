@@ -1,4 +1,6 @@
-public class TaskNotFoundException extends Exception{
+import java.io.IOException;
+
+public class TaskNotFoundException extends IOException{
     public TaskNotFoundException(String message) {
         super(message);
     }

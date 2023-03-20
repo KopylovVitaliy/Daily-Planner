@@ -1,4 +1,6 @@
-public class IncorrectArgumentException extends Exception{
+import java.io.IOException;
+
+public class IncorrectArgumentException extends IOException {
     private String argument;
 
     public IncorrectArgumentException(String argument) {
