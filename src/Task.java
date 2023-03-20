@@ -58,9 +58,9 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return " Задача: " + title + " " + type +
-                ", дата " + dataTime +
-                ", описание задачи: " + description;
+        return " Задача: " + title + ". Описание задачи: " + description +
+                ". Тип задачи: " + type +
+                ". Дата создания: " + dataTime;
     }
 
     @Override

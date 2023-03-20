@@ -23,24 +23,32 @@ public class Main {
         taskService.add(task2);
         System.out.println(task1.appearsln(LocalDate.of(2023, 03, 30)));
         taskService.getAllByDate(LocalDate.of(2023, 03, 30));
-        taskService.remove(1);
-        taskService.removedTasks();
-
 
 
         while (true) {
+            System.out.println("Выберите действие:");
+            System.out.println("1 - создать задачу");
+            System.out.println("2 - Удалить задачу");
+            System.out.println("0 - остановить программу");
+
             int y = scanner.nextInt();
             if (y == 1) {
-                String title1 = scanner.nextLine(); // временная фича пропуска ввода задачи
+                String fix1 = scanner.nextLine(); // временная фича пропуска ввода задачи
                 System.out.println("Название задачи");
                 String title = scanner.nextLine();
+                System.out.println(title);
 
-                System.out.println(title1);
-
-                System.out.println("type");
-                Type type = Type.valueOf(scanner.nextLine());
-                System.out.println(type);
-
+                System.out.println("Тип задачи: 1 - личная, 2 - рабочая");
+                int z = scanner.nextInt();
+                Type type = Type.DEFOLT;
+                if (z == 1) {
+                    type = Type.PERSONAL;
+                    System.out.println(type);
+                } else if (z == 2) {
+                    type = Type.WORK;
+                    System.out.println(type);
+                }
+                String fix = scanner.nextLine(); // временная фича пропуска ввода задачи
                 System.out.println("Описание");
                 String description = scanner.nextLine();
                 System.out.println(description);
@@ -52,15 +60,39 @@ public class Main {
                 LocalDate local = LocalDate.of(year, month, day);
                 System.out.println(local);
 
-                System.out.println("повтор");
+                System.out.println("переодичность задачи");
+                System.out.println("1 - ежедневная ");
+                System.out.println("2 - еженедельная ");
+                System.out.println("3 - ежемесячная ");
+                System.out.println("4 - ежегодная ");
+                System.out.println("5 - разовая ");
 
                 int x = scanner.nextInt();
                 if (x == 1) {
                     DailyTask task = new DailyTask(title, type, localDate.atTime(12, 00), description);
                     taskService.add(task);
+                } else if (x == 2) {
+                    WeeklyTask weeklyTask = new WeeklyTask(title, type, localDate.atTime(12, 00), description);
+                    taskService.add(weeklyTask);
+                } else if (x == 3) {
+                    MonthlyTask monthlyTask = new MonthlyTask(title, type, localDate.atTime(12, 00), description);
+                    taskService.add(monthlyTask);
+                } else if (x == 4) {
+                    YearlyTask yearlyTask = new YearlyTask(title, type, localDate.atTime(12, 00), description);
+                    taskService.add(yearlyTask);
+                } else if (x == 5) {
+                    OneTimeTask oneTimeTask = new OneTimeTask(title, type, localDate.atTime(12, 00), description);
+                    taskService.add(oneTimeTask);
                 }
                 System.out.println(taskService);
-            } else {
+            } else if (y == 2){
+                System.out.println("Введите id задачи, которую нужно удалить.");
+                int d = scanner.nextInt();
+                taskService.remove(d);
+                taskService.removedTasks();
+            }
+
+            else if (y == 0) {
                 break;
             }
         }

@@ -1,7 +1,7 @@
 public enum Type {
     WORK("рабочая"),
-    PERSONAL("личная");
-
+    PERSONAL("личная"),
+    DEFOLT("Дефолт");
     private final String type;
 
     Type(String type) {
