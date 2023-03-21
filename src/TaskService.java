@@ -51,7 +51,7 @@ public class TaskService {
 
     public void removedTasks() {
         System.out.println("Удалённые задачи:");
-        System.out.println(removedTasks);
+        removedTasks.forEach(System.out::println);
     }
 
     @Override

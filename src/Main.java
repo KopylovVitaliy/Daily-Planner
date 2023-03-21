@@ -11,38 +11,6 @@ public class Main {
         LocalDate localDate = LocalDate.now();
         LocalDateTime localTime = LocalDateTime.now();
 
-        DailyTask task1 = new DailyTask("Ежедневная"
-                , Type.valueOf("WORK")
-                , LocalDate.of(2023, Month.MARCH
-                , 2).atStartOfDay()
-                , "чистка зубов");
-        YearlyTask task2 = new YearlyTask("Годовая"
-                , Type.valueOf("PERSONAL")
-                , LocalDate.of(2022, Month.MARCH
-                , 21).atStartOfDay()
-                , "чистка");
-        OneTimeTask task3 = new OneTimeTask("Разовая"
-                , Type.valueOf("PERSONAL")
-                , LocalDate.of(2022, Month.MARCH
-                , 5).atStartOfDay()
-                , "чистка");
-        WeeklyTask task4 = new WeeklyTask("Недельная"
-                , Type.valueOf("PERSONAL")
-                , LocalDate.of(2023, Month.MARCH
-                , 6).atStartOfDay()
-                , "чистка");
-        MonthlyTask task5 = new MonthlyTask("Месячная"
-                , Type.valueOf("PERSONAL")
-                , LocalDate.of(2023, Month.FEBRUARY
-                , 20).atStartOfDay()
-                , "чистка");
-        taskService.add(task1);
-        taskService.add(task2);
-        taskService.add(task3);
-        taskService.add(task4);
-        taskService.add(task5);
-        taskService.allTaskSortedDate(localDate);
-
 
         while (true) {
             System.out.println("Выберите действие:");
@@ -52,6 +20,8 @@ public class Main {
             System.out.println("4 - получить задачи на определённую дату");
             System.out.println("5 - изменить задачу");
             System.out.println("6 - получить отсортированный список всех задач");
+            System.out.println("7 - получить список удалённых задач");
+
             System.out.println("0 - остановить программу");
 
             int y = scanner.nextInt();
@@ -75,13 +45,6 @@ public class Main {
                 System.out.println("Описание");
                 String description = scanner.nextLine();
                 System.out.println(description);
-
-                System.out.println("дата");
-                int year = scanner.nextInt();
-                int month = scanner.nextInt();
-                int day = scanner.nextInt();
-                LocalDate local = LocalDate.of(year, month, day);
-                System.out.println(local);
 
                 System.out.println("переодичность задачи");
                 System.out.println("1 - ежедневная ");
@@ -111,7 +74,8 @@ public class Main {
                 System.out.println("Введите id задачи, которую нужно удалить.");
                 int d = scanner.nextInt();
                 taskService.remove(d);
-                taskService.removedTasks();
+                System.out.println("Задача " + d + " удалена.");
+
             } else if (y == 3) {
                 taskService.getAllByDate(localDate);
             } else if (y == 4) {
@@ -124,16 +88,28 @@ public class Main {
 
                 taskService.getAllByDate(LocalDate.of(year, month, day));
 
-            }else if(y == 5){
+            } else if (y == 5) {
                 System.out.println("Введите id задачи, которую хотите изменить.");
                 int id = scanner.nextInt();
 
-                System.out.println("");
+                System.out.println("1 - изменить название, 2 - изменить описание");
+                int p = scanner.nextInt();
+                if (p == 1) {
+                    System.out.println("Введите новое название задачи");
+                    String newTitle = scanner.next();
+                    taskService.getTaskMap().get(id).setTitle(newTitle);
+                } else if (p == 2) {
+                    System.out.println("Введите новое описание задачи");
+                    String fix = scanner.nextLine(); // fix пропуска сканера
+                    String newDescription = scanner.nextLine();
+                    taskService.getTaskMap().get(id).setDescription(newDescription);
+                }
 
-            } else if (y==6){
+            } else if (y == 6) {
                 taskService.allTaskSortedDate(localDate);
-            }
-            else if (y == 0) {
+            } else if (y == 7) {
+                taskService.removedTasks();
+            } else if (y == 0) {
                 break;
             }
         }

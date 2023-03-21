@@ -15,7 +15,7 @@ public abstract class Task {
         setTitle(title);
         this.type = type;
         this.dataTime = dataTime;
-        this.description = description;
+        setDescription(description);
         this.id = idGenerator++;
     }
 
@@ -45,7 +45,7 @@ public abstract class Task {
         try {
             checkSetTitle(title);
         } catch (IncorrectArgumentException e) {
-            this.title = e.toString();
+            this.title = "Название задачи заданное некоректно. Измените название через меню!";
         }
     }
 
@@ -56,11 +56,18 @@ public abstract class Task {
         this.title = title;
     }
 
-    public void setDescription(String description) throws IncorrectArgumentException {
-        if ( !description.isEmpty() &&  !description.isBlank()) {
-            this.description = description;
+    public void setDescription(String description) {
+        try {
+            checkSetDescription(description);
+        } catch (IncorrectArgumentException e) {
+            this.description = "Описание задачи небыло заданно. Измените описание через меню!";
         }
-        throw new IncorrectArgumentException(description);
+    }
+    public void checkSetDescription(String description) throws IncorrectArgumentException{
+        if (description == null || description.isEmpty() || description.isBlank()) {
+            throw new IncorrectArgumentException(description);
+        }
+        this.description = description;
     }
 
     @Override

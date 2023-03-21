@@ -13,7 +13,7 @@ public class IncorrectArgumentException extends Exception {
 
     @Override
     public String toString() {
-        return "Параметр " + getArgument() + " задан неверно";
+        return "Параметр " + argument + " задан неверно";
     }
 }
 
