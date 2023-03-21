@@ -12,7 +12,7 @@ public abstract class Task {
     private static int idGenerator = 1;
 
     public Task(String title, Type type, LocalDateTime dataTime, String description) {
-        this.title = title;
+        setTitle(title);
         this.type = type;
         this.dataTime = dataTime;
         this.description = description;
@@ -41,12 +41,19 @@ public abstract class Task {
         return id;
     }
 
-    public void setTitle(String title) throws IncorrectArgumentException {
+    public void setTitle(String title) {
+        try {
+            checkSetTitle(title);
+        } catch (IncorrectArgumentException e) {
+            this.title = e.toString();
+        }
+    }
+
+    public void checkSetTitle(String title) throws IncorrectArgumentException {
         if (title == null || title.isEmpty() || title.isBlank()) {
             throw new IncorrectArgumentException(title);
         }
         this.title = title;
-
     }
 
     public void setDescription(String description) throws IncorrectArgumentException {

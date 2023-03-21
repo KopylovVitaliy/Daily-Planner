@@ -15,4 +15,5 @@ public class OneTimeTask extends Task{
                 && getDataTime().getMonth() == dateForCheck.getMonth()
                 && getDataTime().getDayOfYear() == dateForCheck.getDayOfYear();
     }
+
 }

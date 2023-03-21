@@ -1,25 +1,31 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class TaskService {
-    private HashMap<Integer, Task> taskMap = new HashMap<>();
-    private List<Task> removedTasks = new LinkedList<>();
+    private final HashMap<Integer, Task> taskMap = new HashMap<>();
+    private final List<Task> removedTasks = new LinkedList<>();
 
 
     public void add(Task task) {
         taskMap.put(task.getId(), task);
     }
 
-    public Task remove(int id) throws TaskNotFoundException {
+    public void remove(int id) {
+        try {
+            checkRemove(id);
+        } catch (TaskNotFoundException e) {
+            System.out.println("Задачи по номеру " + id + " не существует");
+        }
+
+    }
+
+    public void checkRemove(int id) throws TaskNotFoundException {
         if (!taskMap.containsKey(id)) {
             throw new TaskNotFoundException("Задачи под номером " + id + " не существует");
         }
-
         removedTasks.add(getTaskMap().get(id));
-        return taskMap.remove(id);
+        taskMap.remove(id);
     }
 
     public void getAllByDate(LocalDate localDate) {
@@ -34,18 +40,9 @@ public class TaskService {
     }
 
     public void allTaskSortedDate(LocalDate localDate) {
-        Map<Integer, Task> list = taskMap.entrySet().stream()
-                .filter(x -> x.getValue().appearsln(localDate))
-                .sorted(Comparator.comparingInt(o -> (o.getValue().getDataTime().getDayOfYear())))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        for (Map.Entry<Integer, Task> list1 :
-                list.entrySet()) {
-            System.out.println("Задача N: " + list1.getKey() + ", " + list1.getValue());
-        }
-        System.out.println(list);
-//        List <Map.Entry<Integer, Task>> valuesList = new ArrayList(taskMap.entrySet());
-//        Collections.sort(valuesList, Comparator.comparingInt(o -> (o.getValue().getDataTime().getDayOfYear())));
-//
+        List<Map.Entry<Integer, Task>> mapSort = new ArrayList<>(taskMap.entrySet());
+        mapSort.sort(Comparator.comparingInt(o -> (o.getValue().getDataTime().getDayOfYear())));
+        mapSort.forEach(System.out::println);
     }
 
     public HashMap<Integer, Task> getTaskMap() {

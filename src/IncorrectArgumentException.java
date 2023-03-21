@@ -1,10 +1,10 @@
 import java.io.IOException;
 
-public class IncorrectArgumentException extends IOException {
+public class IncorrectArgumentException extends Exception {
     private String argument;
 
     public IncorrectArgumentException(String argument) {
-        super(argument);
+        this.argument = argument;
     }
 
     public String getArgument() {
@@ -13,7 +13,7 @@ public class IncorrectArgumentException extends IOException {
 
     @Override
     public String toString() {
-        return "Параметр " + argument + " задан неверно";
+        return "Параметр " + getArgument() + " задан неверно";
     }
 }
 

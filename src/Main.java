@@ -5,7 +5,7 @@ import java.util.*;
 
 
 public class Main {
-    public static void main(String[] args) throws  TaskNotFoundException {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         TaskService taskService = new TaskService();
         LocalDate localDate = LocalDate.now();
@@ -43,6 +43,7 @@ public class Main {
         taskService.add(task5);
         taskService.allTaskSortedDate(localDate);
 
+
         while (true) {
             System.out.println("Выберите действие:");
             System.out.println("1 - создать задачу");
@@ -50,6 +51,7 @@ public class Main {
             System.out.println("3 - получить задачи на сегодня");
             System.out.println("4 - получить задачи на определённую дату");
             System.out.println("5 - изменить задачу");
+            System.out.println("6 - получить отсортированный список всех задач");
             System.out.println("0 - остановить программу");
 
             int y = scanner.nextInt();
@@ -105,7 +107,6 @@ public class Main {
                     OneTimeTask oneTimeTask = new OneTimeTask(title, type, localDate.atTime(localTime.getHour(), localTime.getMinute()), description);
                     taskService.add(oneTimeTask);
                 }
-                System.out.println(taskService);
             } else if (y == 2) {
                 System.out.println("Введите id задачи, которую нужно удалить.");
                 int d = scanner.nextInt();
@@ -129,6 +130,8 @@ public class Main {
 
                 System.out.println("");
 
+            } else if (y==6){
+                taskService.allTaskSortedDate(localDate);
             }
             else if (y == 0) {
                 break;
