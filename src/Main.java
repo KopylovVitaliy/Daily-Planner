@@ -26,7 +26,7 @@ public class Main {
 
             int y = scanner.nextInt();
             if (y == 1) {
-                String fix1 = scanner.nextLine(); // временная фича пропуска ввода задачи
+                scanner.nextLine(); // fix пропуска сканера
                 System.out.println("Название задачи");
                 String title = scanner.nextLine();
                 System.out.println(title);
@@ -41,7 +41,7 @@ public class Main {
                     type = Type.WORK;
                     System.out.println(type);
                 }
-                String fix = scanner.nextLine(); // временная фича пропуска ввода задачи
+                scanner.nextLine(); // fix пропуска сканера
                 System.out.println("Описание");
                 String description = scanner.nextLine();
                 System.out.println(description);
@@ -96,11 +96,12 @@ public class Main {
                 int p = scanner.nextInt();
                 if (p == 1) {
                     System.out.println("Введите новое название задачи");
+                    scanner.nextLine(); // fix пропуска сканера
                     String newTitle = scanner.next();
                     taskService.getTaskMap().get(id).setTitle(newTitle);
                 } else if (p == 2) {
                     System.out.println("Введите новое описание задачи");
-                    String fix = scanner.nextLine(); // fix пропуска сканера
+                    scanner.nextLine(); // fix пропуска сканера
                     String newDescription = scanner.nextLine();
                     taskService.getTaskMap().get(id).setDescription(newDescription);
                 }
