@@ -1,8 +1,11 @@
+package Tasks;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
 
-public class MonthlyTask extends Task{
-    public MonthlyTask(String title
+public class DailyTask extends Task {
+    public DailyTask(String title
             , Type type
             , LocalDateTime dataTime
             , String description) {
@@ -11,6 +14,6 @@ public class MonthlyTask extends Task{
 
     @Override
     public boolean appearsln(LocalDate dateForCheck) {
-        return getDataTime().getDayOfMonth() == dateForCheck.getDayOfMonth();
+        return true;
     }
 }

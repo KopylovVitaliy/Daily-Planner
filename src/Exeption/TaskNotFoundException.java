@@ -1,3 +1,5 @@
+package Exeption;
+
 import java.io.IOException;
 
 public class TaskNotFoundException extends Exception{
@@ -7,6 +9,6 @@ public class TaskNotFoundException extends Exception{
 
     @Override
     public String toString() {
-        return "TaskNotFoundException " + super.toString();
+        return "Exeption.TaskNotFoundException " + super.toString();
     }
 }

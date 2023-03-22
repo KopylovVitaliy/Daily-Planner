@@ -1,7 +1,9 @@
+package Tasks;
+
 public enum Type {
     WORK("рабочая"),
     PERSONAL("личная"),
-    DEFOLT("Дефолт");
+    DEFAULT("Дефолт");
     private final String type;
 
     Type(String type) {

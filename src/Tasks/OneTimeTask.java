@@ -1,8 +1,10 @@
+package Tasks;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class YearlyTask extends Task {
-    public YearlyTask(String title
+public class OneTimeTask extends Task {
+    public OneTimeTask(String title
             , Type type
             , LocalDateTime dataTime
             , String description) {
@@ -11,7 +13,9 @@ public class YearlyTask extends Task {
 
     @Override
     public boolean appearsln(LocalDate dateForCheck) {
-        return getDataTime().getMonth() == dateForCheck.getMonth()
+        return getDataTime().getYear() == dateForCheck.getYear()
+                && getDataTime().getMonth() == dateForCheck.getMonth()
                 && getDataTime().getDayOfYear() == dateForCheck.getDayOfYear();
     }
+
 }

@@ -1,3 +1,5 @@
+package Exeption;
+
 import java.io.IOException;
 
 public class IncorrectArgumentException extends Exception {

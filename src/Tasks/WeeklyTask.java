@@ -1,7 +1,11 @@
+package Tasks;
+
+import Tasks.Type;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class WeeklyTask extends Task{
+public class WeeklyTask extends Task {
     public WeeklyTask(String title
             , Type type
             , LocalDateTime dataTime

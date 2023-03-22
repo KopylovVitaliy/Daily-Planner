@@ -1,6 +1,7 @@
+import Tasks.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.*;
 
 
@@ -33,7 +34,7 @@ public class Main {
 
                 System.out.println("Тип задачи: 1 - личная, 2 - рабочая");
                 int z = scanner.nextInt();
-                Type type = Type.DEFOLT;
+                Type type = Type.DEFAULT;
                 if (z == 1) {
                     type = Type.PERSONAL;
                     System.out.println(type);
